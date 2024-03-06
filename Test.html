@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- //Ce code HTML et JavaScript utilise l'objet XMLHttpRequest pour charger dynamiquement 
+//le contenu d'un fichier texte lorsqu'un bouton est cliqué. -->
+<body>
+
+    <div id="demo">
+    <h1>The XMLHttpRequest Object</h1>
+    <button type="button" onclick="loadDoc()">Change Content</button>
+    <!-- //Un bouton qui déclenche la fonction loadDoc() lorsque l'utilisateur clique dessus. -->
+    </div>
+    
+    <script>
+    function loadDoc() {//Cette fonction est conçue pour effectuer une requête HTTP asynchrone vers un serveur,
+        // récupérer les données et mettre à jour le contenu d'un élément HTML avec la réponse de cette requête.
+      var xhttp = new XMLHttpRequest();//creer la requete
+      xhttp.onreadystatechange = function() { // Fonction exécutée à chaque changement d'état de la requête.
+        if (this.readyState == 4 && this.status == 200) {//l'état de la requête est 4 (la requête est terminée) et le status est 200 (la requête a abouti), 
+          document.getElementById("demo").innerHTML = "<pre>" + this.responseText + "</pre>";//le contenu de l'élément ayant l'identifiant "demo" est remplacé par la réponse de la requête (le contenu du fichier texte).
+        }
+      };
+      //lancement de la requete
+      xhttp.open("GET", "ajax_info.txt", true);
+      xhttp.send();// Envoie la requête.
+    }
+    </script>
+    
+    </body>
+    </html>
